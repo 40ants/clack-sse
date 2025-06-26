@@ -43,6 +43,8 @@
                                    "HTTP"
                                    "TODO"
                                    "Unlicense"
+                                   "SSE"
+                                   "OUTPUT-STREAM"
                                    "REPL"
                                    "ASDF:PACKAGE-INFERRED-SYSTEM"
                                    "ASDF"
