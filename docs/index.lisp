@@ -85,7 +85,9 @@ You can install this library from Quicklisp, but you want to receive updates qui
 
 (defsection @usage (:title "Usage")
   "
-Here is how a server-sent-events handler could be mounted into the Clack web application:
+Here is how a server-sent-events handler could be mounted into the Clack web application.
+
+First, we need to define a handler which will write events to the OUTPUT-STREAM:
 
 ```
 (defun server-sent-events-handler (env output-stream)
@@ -101,7 +103,12 @@ Here is how a server-sent-events handler could be mounted into the Clack web app
                                    \"my-custom-event\"
                                    (format nil \"Hello World! ~d\" (incf counter)))
            (finish-output output-stream)))
+```
 
+Then, when we'll build our app, we will use CLACK-SSE:SERVE-SSE function to create a Lack app and
+`mount` middleware to call it when browser makes a request to `/events` route:
+
+```
 (defun start-server (&key (port 8080))
   (let ((app (lack:builder
               (:mount \"/events\"
