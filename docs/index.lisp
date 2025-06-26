@@ -43,6 +43,8 @@
                                    "HTTP"
                                    "TODO"
                                    "Unlicense"
+                                   "SSE"
+                                   "OUTPUT-STREAM"
                                    "REPL"
                                    "ASDF:PACKAGE-INFERRED-SYSTEM"
                                    "ASDF"
@@ -118,7 +120,7 @@ You will find ready to use demo application in `clack-sse-demo` ASDF system:
 ```
 (ql:quickload :clack-sse-demo)
 
-(start-server :port 8080)
+(clack-sse-demo:start-server :port 8080)
 ```
 ")
 

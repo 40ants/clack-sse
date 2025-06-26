@@ -11,3 +11,7 @@
   :pathname "src"
   :depends-on ("clack-sse/core")
   :in-order-to ((test-op (test-op "clack-sse-tests"))))
+
+
+(asdf:register-system-packages "log4cl" '("LOG"))
+(asdf:register-system-packages "lack-util-writer-stream" '("LACK/UTIL/WRITER-STREAM"))
