@@ -10,7 +10,3 @@
   :defsystem-depends-on ("40ants-asdf-system")
   :pathname "demo"
   :depends-on ("clack-sse-demo/app"))
-
-
-(asdf:register-system-packages "log4cl" '("LOG"))
-(asdf:register-system-packages "lack-util-writer-stream" '("LACK/UTIL/WRITER-STREAM"))
