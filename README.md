@@ -70,7 +70,7 @@ You will find ready to use demo application in `clack-sse-demo` `ASDF` system:
 ```
 (ql:quickload :clack-sse-demo)
 
-(start-server :port 8080)
+(clack-sse-demo:start-server :port 8080)
 ```
 <a id="x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40API-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29"></a>
 
@@ -82,7 +82,7 @@ You will find ready to use demo application in `clack-sse-demo` `ASDF` system:
 
 <a id="x-28-23A-28-289-29-20BASE-CHAR-20-2E-20-22CLACK-SSE-22-29-20PACKAGE-29"></a>
 
-#### [package](5f9e) `clack-sse`
+#### [package](8587) `clack-sse`
 
 <a id="x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-7C-40CLACK-SSE-3FFunctions-SECTION-7C-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29"></a>
 
@@ -90,11 +90,11 @@ You will find ready to use demo application in `clack-sse-demo` `ASDF` system:
 
 <a id="x-28CLACK-SSE-3ADEFAULT-ON-CONNECT-20FUNCTION-29"></a>
 
-##### [function](efe9) `clack-sse:default-on-connect` env
+##### [function](6448) `clack-sse:default-on-connect` env
 
 <a id="x-28CLACK-SSE-3ASERVE-SSE-20FUNCTION-29"></a>
 
-##### [function](dce3) `clack-sse:serve-sse` stream-writer &key (on-connect 'default-on-connect)
+##### [function](039a) `clack-sse:serve-sse` stream-writer &key (on-connect 'default-on-connect)
 
 Returns a function suitable for accepting a connection from Clack framework and serving server-sent-events stream.
 
@@ -118,9 +118,9 @@ See example in the demo/app.lisp file.
 [3947]: https://40ants.com/clack-sse/
 [66c6]: https://github.com/40ants/clack-sse
 [c325]: https://github.com/40ants/clack-sse/actions
-[5f9e]: https://github.com/40ants/clack-sse/blob/4e80e92c3ad07b2817af6646849e33e7751a337d/src/core.lisp#L1
-[efe9]: https://github.com/40ants/clack-sse/blob/4e80e92c3ad07b2817af6646849e33e7751a337d/src/core.lisp#L14
-[dce3]: https://github.com/40ants/clack-sse/blob/4e80e92c3ad07b2817af6646849e33e7751a337d/src/core.lisp#L21
+[8587]: https://github.com/40ants/clack-sse/blob/4284e8232cba1578000838c92fd10d6cf45632c3/src/core.lisp#L1
+[6448]: https://github.com/40ants/clack-sse/blob/4284e8232cba1578000838c92fd10d6cf45632c3/src/core.lisp#L14
+[039a]: https://github.com/40ants/clack-sse/blob/4284e8232cba1578000838c92fd10d6cf45632c3/src/core.lisp#L21
 [f9a3]: https://github.com/40ants/clack-sse/issues
 [75f7]: https://github.com/fukamachi/clack
 [2580]: https://quickdocs.org/lack-util-writer-stream
