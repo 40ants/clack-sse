@@ -1,0 +1,297 @@
+<html lang=en>
+ <head>
+  <meta charset=UTF-8><meta name=viewport
+      content="width=device-width, initial-scale=1">
+  <title>clack-sse - A library to serve Server-Sent-Events from web applications 
+   based on Clack framework.</title>
+  <link rel=alternate
+        href="https://40ants.com/clack-sse/changelog.xml"
+        type="application/rss+xml">
+  <link rel=stylesheet type="text/css"
+        href=theme.css>
+  <script type="text/javascript" src=jquery.js></script>
+  <script type="text/javascript" src=toc.js></script>
+  <script type="text/javascript">$(document).ready(function() {$('a:has(img)').css('border-bottom', 'none')})</script>
+  <link rel=stylesheet type="text/css"
+      href=highlight.min.css>
+  <script type="text/javascript"
+          src=highlight.min.js></script>
+  <script type="text/javascript">hljs.highlightAll();</script>
+<style type="text/css">
+/* Стили для сворачиваемого меню */
+.sidebar ul ul {
+  display: none; /* Скрываем все подменю по умолчанию */
+  margin-left: 0.5em;
+}
+
+.sidebar li.expanded > ul {
+  display: block; /* Показываем подменю для развернутых элементов */
+}
+
+/* Стили для пунктов с подменю */
+.sidebar li.has-children > a {
+  cursor: pointer;
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.sidebar li.has-children > p > a {
+  position: relative;
+  left: -1rem;
+}
+
+.sidebar li.has-children > p > a::before {
+  content:"►";
+}
+
+.sidebar li.has-children.expanded > p > a::before {
+  content: "▼";
+  position: relative;
+  left: -0.08rem;
+}
+
+/* Подсветка активного пункта */
+.sidebar li.active > a {
+  font-weight: bold;
+}
+
+/* Если активная страница находится в подменю, раскрываем родителя */
+.sidebar li.active-parent {
+  font-weight: normal;
+}
+
+.sidebar li.active-parent > ul {
+  display: block;
+}
+</style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL71WXK73K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FL71WXK73K');
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(42462884, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/42462884" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+ </head>
+ <body>
+  <div class=page><a id=fork-me href="https://github.com/40ants/clack-sse">Fork me on GitHub</a>
+   <div class=navbar>
+    <div class=navbar-inner>
+     <a class=brand href="/">
+      <img class=logo
+           src="https://40ants.com/img/logo.svg"></a>
+     <ul class=nav>
+      <li><a href="/posts/">Blog</a>
+      <li><a href="/ru/posts/">Blog (RU)</a>
+      <li><a href="/tips/">Lisp Tips</a>
+      <li><a href="/projects/">Our Projects</a>
+      <li><a href="/about/">About</a>
+     </ul>
+    </div>
+   </div>
+   <input type=checkbox id=sidebar-check>
+   <label for=sidebar-check>
+    <div id=sidebar-trigger>
+     <span></span><span></span><span></span>
+    </div></label><div class=sidebar><div class=header><form class=search method=GET action="search/">
+      <input type=text name=q>
+      <input type=submit value=Search><span id=search-progress></span>
+     </form>
+    </div><div class=content><div class=page-toc><ul><li><p><a href="#x-28CLACK-SSE-DOCS-2FINDEX-3A-40INDEX-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29" data-document="" data-node="x-28CLACK-SSE-DOCS-2FINDEX-3A-40INDEX-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29">clack-sse - A library to serve Server-Sent-Events from web applications based on Clack framework.</a></p><ul><li><p><a href="#clack-sse-asdf-system-details" data-document="" data-node="clack-sse-asdf-system-details">CLACK-SSE ASDF System Details</a></p></li><li><p><a href="#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40INSTALLATION-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29" data-document="" data-node="x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40INSTALLATION-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29">Installation</a></p></li><li><p><a href="#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40USAGE-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29" data-document="" data-node="x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40USAGE-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29">Usage</a></p></li><li><p><a href="#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40API-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29" data-document="" data-node="x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40API-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29">API</a></p><ul><li><p><a href="#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40CLACK-SSE-3FPACKAGE-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29" data-document="" data-node="x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40CLACK-SSE-3FPACKAGE-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29">CLACK-SSE</a></p><ul><li><p><a href="#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-7C-40CLACK-SSE-3FFunctions-SECTION-7C-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29" data-document="" data-node="x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-7C-40CLACK-SSE-3FFunctions-SECTION-7C-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29">Functions</a></p></li></ul></li></ul></li></ul></li><li><p><a href="changelog/#x-28CLACK-SSE-DOCS-2FCHANGELOG-3A-40CHANGELOG-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29" data-document="changelog/" data-node="x-28CLACK-SSE-DOCS-2FCHANGELOG-3A-40CHANGELOG-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29">ChangeLog</a></p></li></ul>
+     </div>
+    </div><div class=footer>
+     <a href="https://40ants.com/doc">[generated by 40ANTS-DOC]</a>
+    </div>
+   </div><div class=content role=main><h1>clack-sse - A library to serve Server-Sent-Events from web applications based on Clack framework.<a class=header-link
+     href=#x-28CLACK-SSE-DOCS-2FINDEX-3A-40INDEX-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29
+     title="Permalink to this headline"
+     id=x-28CLACK-SSE-DOCS-2FINDEX-3A-40INDEX-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29></a></h1><h2 id="clack-sse-asdf-system-details">CLACK-SSE ASDF System Details</h2><ul><li><p>Description: A library to serve Server-Sent-Events from web applications based on Clack framework.</p></li><li><p>Licence: Unlicense</p></li><li><p>Author: Alexander Artemenko &lt;svetlyak.40wt@gmail.com&gt;</p></li><li><p>Homepage: <a href="https://40ants.com/clack-sse/">https://40ants.com/clack-sse/</a></p></li><li><p>Bug tracker: <a href="https://github.com/40ants/clack-sse/issues">https://github.com/40ants/clack-sse/issues</a></p></li><li><p>Source control: <a href="https://github.com/40ants/clack-sse">GIT</a></p></li><li><p>Depends on: <a href="https://quickdocs.org/lack-util-writer-stream">lack-util-writer-stream</a>, <a href="https://quickdocs.org/log4cl">log4cl</a>, <a href="https://quickdocs.org/log4cl-extras">log4cl-extras</a></p></li></ul><p><a href="https://github.com/40ants/clack-sse/actions"><img src="https://github-actions.40ants.com/40ants/clack-sse/matrix.svg?only=ci.run-tests"/></a></p><p><img src="http://quickdocs.org/badge/clack-sse.svg"/></p><p>This library allows you to add a route to the <a href="https://github.com/fukamachi/clack">Clack</a> application for serving Server-Side-Events.
+<code>SSE</code> is an alternative to the Websocket technique, allowing to push data from the backend to the frontend.</p><h2>Installation<a class=header-link
+     href=#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40INSTALLATION-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29
+     title="Permalink to this headline"
+     id=x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40INSTALLATION-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29></a></h2><p>You can install this library from Quicklisp, but you want to receive updates quickly, then install it from Ultralisp.org:</p><pre><code class="">(ql-dist:install-dist &quot;http://dist.ultralisp.org/&quot;
+                      :prompt nil)
+(ql:quickload :clack-sse)</code></pre><h2>Usage<a class=header-link
+     href=#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40USAGE-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29
+     title="Permalink to this headline"
+     id=x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40USAGE-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29></a></h2><p>Here is how a server-sent-events handler could be mounted into the Clack web application.</p><p>First, we need to define a handler which will write events to the <code>OUTPUT-STREAM</code>:</p><pre><code class="">(defun server-sent-events-handler (env output-stream)
+  (declare (ignore env))
+  (loop with counter = 0
+        repeat 100
+        do 
+           (sleep 2)
+           ;; Without sse-server module
+           ;;(format output-stream &quot;event:my-custom-event~%data:Hello World! ~d~%~%&quot; (incf counter))
+           ;; With sse-server module
+           (sse-server:send-event! output-stream 
+                                   &quot;my-custom-event&quot;
+                                   (format nil &quot;Hello World! ~d&quot; (incf counter)))
+           (finish-output output-stream)))</code></pre><p>Then, when we'll build our app, we will use <a href="https://40ants.com/clack-sse/#x-28CLACK-SSE-3ASERVE-SSE-20FUNCTION-29" data-document="https://40ants.com/clack-sse/" data-node="x-28CLACK-SSE-3ASERVE-SSE-20FUNCTION-29"><code>clack-sse:serve-sse</code></a> function to create a Lack app and
+<code>mount</code> middleware to call it when browser makes a request to <code>/events</code> route:</p><pre><code class="">(defun start-server (&amp;key (port 8080))
+  (let ((app (lack:builder
+              (:mount &quot;/events&quot;
+                      (serve-sse 'server-sent-events-handler))
+              'index-page)))
+    (clack:clackup app
+                   :port port
+                   :use-thread nil)))</code></pre><p>This example uses <code>sse-server</code> <code>ASDF</code> system to send event data in the correct format.
+However, you can write directly to the <code>OUTPUT-STREAM</code> if your data is simple enough.</p><p>You will find ready to use demo application in <code>clack-sse-demo</code> <code>ASDF</code> system:</p><pre><code class="">(ql:quickload :clack-sse-demo)
+
+(clack-sse-demo:start-server :port 8080)</code></pre><h2>API<a class=header-link
+     href=#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40API-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29
+     title="Permalink to this headline"
+     id=x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40API-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29></a></h2><h3>CLACK-SSE<a class=header-link
+     href=#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40CLACK-SSE-3FPACKAGE-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29
+     title="Permalink to this headline"
+     id=x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-40CLACK-SSE-3FPACKAGE-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29></a></h3><div class=reference-bullet><div class=reference-bullet-header><a class=locative-type href="https://github.com/40ants/clack-sse/blob/aad7de1119b58df364ebef3f01175432da82dceb/src/core.lisp#L1">package</a><div class=reference-object><div class=object-name><a href=#x-28-23A-28-289-29-20BASE-CHAR-20-2E-20-22CLACK-SSE-22-29-20PACKAGE-29 id=x-28-23A-28-289-29-20BASE-CHAR-20-2E-20-22CLACK-SSE-22-29-20PACKAGE-29>clack-sse</a></div></div><a class=bullet-link href=#x-28-23A-28-289-29-20BASE-CHAR-20-2E-20-22CLACK-SSE-22-29-20PACKAGE-29></a></div></div><h4>Functions<a class=header-link
+     href=#x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-7C-40CLACK-SSE-3FFunctions-SECTION-7C-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29
+     title="Permalink to this headline"
+     id=x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-7C-40CLACK-SSE-3FFunctions-SECTION-7C-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29></a></h4><div class=reference-bullet><div class=reference-bullet-header><a class=locative-type href="https://github.com/40ants/clack-sse/blob/aad7de1119b58df364ebef3f01175432da82dceb/src/core.lisp#L14">function</a><div class=reference-object><div class=object-name><a href=#x-28CLACK-SSE-3ADEFAULT-ON-CONNECT-20FUNCTION-29 id=x-28CLACK-SSE-3ADEFAULT-ON-CONNECT-20FUNCTION-29>clack-sse:default-on-connect</a></div><div class=object-args><span class=locative-args>env</span></div></div><a class=bullet-link href=#x-28CLACK-SSE-3ADEFAULT-ON-CONNECT-20FUNCTION-29></a></div><div class=bullet-content><p>Accepts any connection and returns headers to prevent caching.</p><p>Here is what this function returns:</p><pre><code class="">(list 200
+        (list :content-type &quot;text/event-stream&quot;
+              :cache-control &quot;no-store, no-cache, must-revalidate, post-check=0, pre-check=0&quot;))</code></pre></div></div><div class=reference-bullet><div class=reference-bullet-header><a class=locative-type href="https://github.com/40ants/clack-sse/blob/aad7de1119b58df364ebef3f01175432da82dceb/src/core.lisp#L30">function</a><div class=reference-object><div class=object-name><a href=#x-28CLACK-SSE-3ASERVE-SSE-20FUNCTION-29 id=x-28CLACK-SSE-3ASERVE-SSE-20FUNCTION-29>clack-sse:serve-sse</a></div><div class=object-args><span class=locative-args>stream-writer &amp;key (on-connect &#39;default-on-connect)</span></div></div><a class=bullet-link href=#x-28CLACK-SSE-3ASERVE-SSE-20FUNCTION-29></a></div><div class=bullet-content><p>Returns a function suitable for accepting a connection from Clack framework and serving server-sent-events stream.</p><p>Argument <code>STREAM-WRITER</code> should be a funcallable object accepting two arguments:</p><ul><li><p><code>ENV</code> argument is the same plist as usual Clack applications receive.</p></li><li><p><code>OUTPUT-STREAM</code> is a writable stream to write events to.</p></li></ul><p>Additionally, you can provide <code>ON-CONNECT</code> argument. If provided, it should be a function of one argument <code>ENV</code>.
+This function should return a list of two items: http code and a plist of <code>HTTP</code> headers. You can use
+it for authentication or a session initialization. Here is what as default for <code>ON-CONNECT</code> argument function <a href="https://40ants.com/clack-sse/#x-28CLACK-SSE-3ADEFAULT-ON-CONNECT-20FUNCTION-29" data-document="https://40ants.com/clack-sse/" data-node="x-28CLACK-SSE-3ADEFAULT-ON-CONNECT-20FUNCTION-29"><code>default-on-connect</code></a>
+is used.</p><p>See example application in the demo/app.lisp file.</p></div></div>
+   </div><div class=footer>
+    <hr class=separator>
+    <p class=fineprint>Created with passion by <em>40Ants</em><a class=lisp-logo
+     href="http://lisp-lang.org/">
+      <img
+           src="https://40ants.com/img/made-with-lisp.svg"></a>
+   </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Ключ для localStorage
+  const STORAGE_KEY = 'clack-sse-docs-menu-state';
+  
+  // Загружаем сохраненное состояние меню
+  function loadMenuState() {
+    try {
+      const savedState = localStorage.getItem(STORAGE_KEY);
+      return savedState ? JSON.parse(savedState) : {};
+    } catch (e) {
+      console.error('Ошибка при загрузке состояния меню:', e);
+      return {};
+    }
+  }
+  
+  // Сохраняем текущее состояние меню
+  function saveMenuState(state) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.error('Ошибка при сохранении состояния меню:', e);
+    }
+  }
+  
+  // Получаем уникальный идентификатор для пункта меню
+  function getMenuItemId(item) {
+    const link = item.querySelector('a');
+    if (!link) return null;
+    
+    // Используем текст ссылки как идентификатор
+    // Можно также использовать href, но он может меняться в зависимости от текущей страницы
+    return link.innerText.trim();
+  }
+  
+  // Загружаем сохраненное состояние
+  const menuState = loadMenuState();
+  
+  // Находим все пункты меню с подпунктами
+  const menuItems = document.querySelectorAll('.sidebar li');
+  
+  // Обрабатываем каждый пункт меню
+  menuItems.forEach(item => {
+    const subMenu = item.querySelector('ul');
+    
+    // Если у пункта есть подменю
+    if (subMenu) {
+      const itemId = getMenuItemId(item);
+      item.classList.add('has-children');
+      
+      // Восстанавливаем состояние из localStorage, если оно сохранено
+      if (itemId && menuState[itemId]) {
+        item.classList.add('expanded');
+      }
+      
+      // Добавляем обработчик клика
+      const link = item.querySelector('a');
+      if (link) {
+        link.addEventListener('click', function(e) {
+          // Останавливаем переход по ссылке только если кликнули по пункту с подменю
+          if (item.classList.contains('has-children')) {
+            e.preventDefault();
+            
+            // Переключаем класс для раскрытия/скрытия
+            item.classList.toggle('expanded');
+            
+            // Сохраняем новое состояние
+            if (itemId) {
+              if (item.classList.contains('expanded')) {
+                menuState[itemId] = true;
+              } else {
+                delete menuState[itemId];
+              }
+              saveMenuState(menuState);
+            }
+          }
+        });
+      }
+    }
+  });
+  
+  // Функция для поиска и раскрытия родителей активного пункта
+  function expandActiveItemParents() {
+    const activeItem = document.querySelector('.sidebar li.active');
+    if (activeItem) {
+      let parent = activeItem.parentElement;
+      
+      while (parent) {
+        if (parent.tagName === 'UL' && parent.parentElement && parent.parentElement.tagName === 'LI') {
+          parent.parentElement.classList.add('expanded');
+          parent.parentElement.classList.add('active-parent');
+          
+          // Сохраняем состояние активного родителя
+          const parentItem = parent.parentElement;
+          const parentId = getMenuItemId(parentItem);
+          if (parentId) {
+            menuState[parentId] = true;
+          }
+        }
+        parent = parent.parentElement;
+      }
+      
+      // Сохраняем обновленное состояние после раскрытия активных родителей
+      saveMenuState(menuState);
+    }
+  }
+  
+  // Запускаем функцию для текущей страницы
+  expandActiveItemParents();
+});
+</script>
+
+
+  </div>
+ </body>
+</html>
