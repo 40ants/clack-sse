@@ -12,6 +12,15 @@
 
 
 (defun default-on-connect (env)
+  "Accepts any connection and returns headers to prevent caching.
+
+   Here is what this function returns:
+
+   ```
+   (list 200
+           (list :content-type \"text/event-stream\"
+                 :cache-control \"no-store, no-cache, must-revalidate, post-check=0, pre-check=0\"))
+   ```"
   (declare (ignore env))
   (list 200
         (list :content-type "text/event-stream"
@@ -28,15 +37,10 @@
 
    Additionally, you can provide ON-CONNECT argument. If provided, it should be a function of one argument ENV.
    This function should return a list of two items: http code and a plist of HTTP headers. You can use
-   it for authentication or a session initialization. Here is what default ON-CONNECT argument returns:
+   it for authentication or a session initialization. Here is what as default for ON-CONNECT argument function DEFAULT-ON-CONNECT
+   is used.
 
-   ```
-   (list 200
-           (list :content-type \"text/event-stream\"
-                 :cache-control \"no-store, no-cache, must-revalidate, post-check=0, pre-check=0\"))
-   ```
-
-   See example in the demo/app.lisp file."
+   See example application in the demo/app.lisp file."
   (flet ((sse-app (env)
            (flet ((async-handler (responder)
                     (log:info "Making events stream")
