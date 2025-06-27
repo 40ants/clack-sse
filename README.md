@@ -88,7 +88,7 @@ You will find ready to use demo application in `clack-sse-demo` `ASDF` system:
 
 <a id="x-28-23A-28-289-29-20BASE-CHAR-20-2E-20-22CLACK-SSE-22-29-20PACKAGE-29"></a>
 
-#### [package](215b) `clack-sse`
+#### [package](e934) `clack-sse`
 
 <a id="x-28CLACK-SSE-DOCS-2FINDEX-3A-3A-7C-40CLACK-SSE-3FFunctions-SECTION-7C-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29"></a>
 
@@ -96,11 +96,20 @@ You will find ready to use demo application in `clack-sse-demo` `ASDF` system:
 
 <a id="x-28CLACK-SSE-3ADEFAULT-ON-CONNECT-20FUNCTION-29"></a>
 
-##### [function](1108) `clack-sse:default-on-connect` env
+##### [function](4109) `clack-sse:default-on-connect` env
 
+Accepts any connection and returns headers to prevent caching.
+
+Here is what this function returns:
+
+```
+(list 200
+        (list :content-type "text/event-stream"
+              :cache-control "no-store, no-cache, must-revalidate, post-check=0, pre-check=0"))
+```
 <a id="x-28CLACK-SSE-3ASERVE-SSE-20FUNCTION-29"></a>
 
-##### [function](6fb6) `clack-sse:serve-sse` stream-writer &key (on-connect 'default-on-connect)
+##### [function](fde5) `clack-sse:serve-sse` stream-writer &key (on-connect 'default-on-connect)
 
 Returns a function suitable for accepting a connection from Clack framework and serving server-sent-events stream.
 
@@ -111,23 +120,20 @@ Argument `STREAM-WRITER` should be a funcallable object accepting two arguments:
 
 Additionally, you can provide `ON-CONNECT` argument. If provided, it should be a function of one argument `ENV`.
 This function should return a list of two items: http code and a plist of `HTTP` headers. You can use
-it for authentication or a session initialization. Here is what default `ON-CONNECT` argument returns:
+it for authentication or a session initialization. Here is what as default for `ON-CONNECT` argument function [`default-on-connect`][b6d4]
+is used.
 
-```
-(list 200
-        (list :content-type "text/event-stream"
-              :cache-control "no-store, no-cache, must-revalidate, post-check=0, pre-check=0"))
-```
-See example in the demo/app.lisp file.
+See example application in the demo/app.lisp file.
 
 
 [3947]: https://40ants.com/clack-sse/
+[b6d4]: https://40ants.com/clack-sse/#x-28CLACK-SSE-3ADEFAULT-ON-CONNECT-20FUNCTION-29
 [a9ba]: https://40ants.com/clack-sse/#x-28CLACK-SSE-3ASERVE-SSE-20FUNCTION-29
 [66c6]: https://github.com/40ants/clack-sse
 [c325]: https://github.com/40ants/clack-sse/actions
-[215b]: https://github.com/40ants/clack-sse/blob/59fa69069989c122e6ae91d068c89aa8ce95e192/src/core.lisp#L1
-[1108]: https://github.com/40ants/clack-sse/blob/59fa69069989c122e6ae91d068c89aa8ce95e192/src/core.lisp#L14
-[6fb6]: https://github.com/40ants/clack-sse/blob/59fa69069989c122e6ae91d068c89aa8ce95e192/src/core.lisp#L21
+[e934]: https://github.com/40ants/clack-sse/blob/aad7de1119b58df364ebef3f01175432da82dceb/src/core.lisp#L1
+[4109]: https://github.com/40ants/clack-sse/blob/aad7de1119b58df364ebef3f01175432da82dceb/src/core.lisp#L14
+[fde5]: https://github.com/40ants/clack-sse/blob/aad7de1119b58df364ebef3f01175432da82dceb/src/core.lisp#L30
 [f9a3]: https://github.com/40ants/clack-sse/issues
 [75f7]: https://github.com/fukamachi/clack
 [2580]: https://quickdocs.org/lack-util-writer-stream
