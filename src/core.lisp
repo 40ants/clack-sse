@@ -45,7 +45,7 @@
            (flet ((async-handler (responder)
                     (log:info "Making events stream")
 
-                    (let* ((response (funcall on-connect))
+                    (let* ((response (funcall on-connect env))
                            (writer (funcall responder
                                             response))
                            (output-stream (lack/util/writer-stream:make-writer-stream writer)))
