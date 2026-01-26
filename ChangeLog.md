@@ -2,6 +2,12 @@
 
 # ChangeLog
 
+<a id="x-28CLACK-SSE-DOCS-2FCHANGELOG-3A-3A-7C0-2E1-2E1-7C-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29"></a>
+
+## 0.1.1 (2026-01-23)
+
+* Fixed issue with calling on-connect function during connect initialization.
+
 <a id="x-28CLACK-SSE-DOCS-2FCHANGELOG-3A-3A-7C0-2E1-2E0-7C-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29"></a>
 
 ## 0.1.0 (2025-06-27)
